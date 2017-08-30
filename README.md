@@ -1,7 +1,7 @@
 # go-nagios-config
 A Nagios config parser in Go (work in progress).
 
-- The package is currently able to parse a valid nagios configuration and to print it (see the included main for an example);
+- The package is currently able to parse a valid nagios configuration and to print it;
 - timeperiods are not parsed;
 
 ### Roadmap:
