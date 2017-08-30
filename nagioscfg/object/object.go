@@ -29,11 +29,13 @@ var Type = map[string]interface{}{
 var listSeparator = regexp.MustCompile("\\s*,\\s*")
 
 type Object interface {
-	init(string, map[string]string, []string, []string, map[string]container) (err error)
+	init(string)
+	fill(map[string]string, []string, []string, map[string]container) (err error)
 	Dump()
 	GetProperty(string) (string, bool)
 	GetList(string) ([]string, bool)
 	GetEnum(string) ([]string, bool)
+	Copy() Object
 }
 
 type enumProperty map[string]int
@@ -49,16 +51,18 @@ type object struct {
 	enumProperties map[string][]string
 }
 
-func (o *object) init(oType string,
-	properties map[string]string,
-	propertiesDef []string,
-	listPropertiesDef []string,
-	enumPropertiesDef map[string]container) (err error) {
+func (o *object) init(oType string) {
 	// Initialize struct
 	o.oType = oType
 	o.properties = make(map[string]string)
 	o.listProperties = make(map[string][]string)
 	o.enumProperties = make(map[string][]string)
+}
+
+func (o *object) fill(properties map[string]string,
+	propertiesDef []string,
+	listPropertiesDef []string,
+	enumPropertiesDef map[string]container) (err error) {
 
 	// Get regular properties from the map
 	for _, p := range propertiesDef {
@@ -105,17 +109,27 @@ func (e enumProperty) contains(k string) bool {
 	return ok
 }
 
+// Retrieve a regular property by name
 func (o *object) GetProperty(p string) (string, bool) {
 	v, ok := o.properties[p]
 	return v, ok
 }
 
+// Retrieve a list property by name
 func (o *object) GetList(p string) ([]string, bool) {
 	v, ok := o.listProperties[p]
 	return v, ok
 }
 
+// Retrieve an enum property by name
 func (o *object) GetEnum(p string) ([]string, bool) {
 	v, ok := o.enumProperties[p]
 	return v, ok
+}
+
+// Get a copy of the object
+func (o *object) Copy() Object {
+	no := new(object)
+	no.init(o.oType)
+	return no
 }

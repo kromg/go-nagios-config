@@ -26,6 +26,7 @@ var hostescalationEnumProperties = map[string]container{
 func NewHostescalation(properties map[string]string) Object {
 	h := new(object)
 	// Initialize structure
-	h.init("hostescalation", properties, hostescalationRegularProperties, hostescalationListProperties, hostescalationEnumProperties)
+	h.init("hostescalation")
+	h.fill(properties, hostescalationRegularProperties, hostescalationListProperties, hostescalationEnumProperties)
 	return h
 }

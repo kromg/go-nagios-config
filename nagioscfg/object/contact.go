@@ -27,13 +27,14 @@ var contactListProperties = []string{
 }
 
 var contactEnumProperties = map[string]container{
-	"host_notification_options":    enumProperty{"d": 1, "u": 1, "r": 1, "f": 1, "s": 1, "n": 1},
 	"service_notification_options": enumProperty{"w": 1, "u": 1, "c": 1, "r": 1, "f": 1, "s": 1, "n": 1},
+	"host_notification_options":    enumProperty{"d": 1, "u": 1, "r": 1, "f": 1, "s": 1, "n": 1},
 }
 
 func NewContact(properties map[string]string) Object {
 	c := new(object)
 	// Initialize structure
-	c.init("contact", properties, contactRegularProperties, contactListProperties, contactEnumProperties)
+	c.init("contact")
+	c.fill(properties, contactRegularProperties, contactListProperties, contactEnumProperties)
 	return c
 }

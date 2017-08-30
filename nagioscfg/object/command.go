@@ -18,6 +18,7 @@ var commandEnumProperties = map[string]container{}
 func NewCommand(properties map[string]string) Object {
 	c := new(object)
 	// Initialize structure
-	c.init("command", properties, commandRegularProperties, commandListProperties, commandEnumProperties)
+	c.init("command")
+	c.fill(properties, commandRegularProperties, commandListProperties, commandEnumProperties)
 	return c
 }

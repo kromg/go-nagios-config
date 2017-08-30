@@ -23,6 +23,7 @@ var serviceextinfoEnumProperties = map[string]container{}
 func NewServiceextinfo(properties map[string]string) Object {
 	s := new(object)
 	// Initialize structure
-	s.init("serviceextinfo", properties, serviceextinfoRegularProperties, serviceextinfoListProperties, serviceextinfoEnumProperties)
+	s.init("serviceextinfo")
+	s.fill(properties, serviceextinfoRegularProperties, serviceextinfoListProperties, serviceextinfoEnumProperties)
 	return s
 }

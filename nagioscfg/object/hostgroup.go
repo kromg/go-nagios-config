@@ -23,6 +23,7 @@ var hostgroupEnumProperties = map[string]container{}
 func NewHostgroup(properties map[string]string) Object {
 	h := new(object)
 	// Initialize structure
-	h.init("hostgroup", properties, hostgroupRegularProperties, hostgroupListProperties, hostgroupEnumProperties)
+	h.init("hostgroup")
+	h.fill(properties, hostgroupRegularProperties, hostgroupListProperties, hostgroupEnumProperties)
 	return h
 }

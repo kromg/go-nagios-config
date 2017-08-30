@@ -27,6 +27,7 @@ var serviceescalationEnumProperties = map[string]container{
 func NewServiceescalation(properties map[string]string) Object {
 	s := new(object)
 	// Initialize structure
-	s.init("serviceescalation", properties, serviceescalationRegularProperties, serviceescalationListProperties, serviceescalationEnumProperties)
+	s.init("serviceescalation")
+	s.fill(properties, serviceescalationRegularProperties, serviceescalationListProperties, serviceescalationEnumProperties)
 	return s
 }

@@ -1,7 +1,7 @@
 package nagioscfg
 
 import (
-	"fmt"
+	"log"
 )
 
 // Loop on all services and, when a service is found with more than one host defined,
@@ -12,7 +12,12 @@ func (n *nagioscfg) SplitServicesToSingleHosts() {
 	for _, s := range n.objects["service"] {
 		if hosts, ok := s.GetList("host_name"); ok {
 			if len(hosts) > 1 {
-				fmt.Printf("Splitting: %v\n", hosts)
+				for _, host := range hosts {
+					sc := s.Copy()
+					sc.Dump()
+					log.Printf("Host: %s\n", host)
+				}
+				log.Printf("Splitting: %v\n", hosts)
 			}
 		}
 	}

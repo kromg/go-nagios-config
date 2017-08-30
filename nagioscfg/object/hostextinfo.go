@@ -26,6 +26,7 @@ var hostextinfoEnumProperties = map[string]container{}
 func NewHostextinfo(properties map[string]string) Object {
 	h := new(object)
 	// Initialize structure
-	h.init("hostextinfo", properties, hostextinfoRegularProperties, hostextinfoListProperties, hostextinfoEnumProperties)
+	h.init("hostextinfo")
+	h.fill(properties, hostextinfoRegularProperties, hostextinfoListProperties, hostextinfoEnumProperties)
 	return h
 }

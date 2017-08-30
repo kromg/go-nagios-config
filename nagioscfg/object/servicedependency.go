@@ -22,13 +22,14 @@ var servicedependencyListProperties = []string{
 }
 
 var servicedependencyEnumProperties = map[string]container{
-	"notification_failure_criteria": enumProperty{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
 	"execution_failure_criteria":    enumProperty{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
+	"notification_failure_criteria": enumProperty{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
 }
 
 func NewServicedependency(properties map[string]string) Object {
 	s := new(object)
 	// Initialize structure
-	s.init("servicedependency", properties, servicedependencyRegularProperties, servicedependencyListProperties, servicedependencyEnumProperties)
+	s.init("servicedependency")
+	s.fill(properties, servicedependencyRegularProperties, servicedependencyListProperties, servicedependencyEnumProperties)
 	return s
 }

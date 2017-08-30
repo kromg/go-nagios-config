@@ -38,24 +38,25 @@ var serviceRegularProperties = []string{
 }
 
 var serviceListProperties = []string{
-	"host_name",
-	"hostgroup_name",
 	"contact_groups",
 	"contacts",
 	"servicegroups",
 	"use",
+	"host_name",
+	"hostgroup_name",
 }
 
 var serviceEnumProperties = map[string]container{
-	"initial_state":          enumProperty{"o": 1, "w": 1, "u": 1, "c": 1},
-	"flap_detection_options": enumProperty{"o": 1, "w": 1, "c": 1, "u": 1},
 	"stalking_options":       enumProperty{"o": 1, "w": 1, "u": 1, "c": 1},
+	"flap_detection_options": enumProperty{"o": 1, "w": 1, "c": 1, "u": 1},
 	"notification_options":   enumProperty{"w": 1, "u": 1, "c": 1, "r": 1, "f": 1, "s": 1},
+	"initial_state":          enumProperty{"o": 1, "w": 1, "u": 1, "c": 1},
 }
 
 func NewService(properties map[string]string) Object {
 	s := new(object)
 	// Initialize structure
-	s.init("service", properties, serviceRegularProperties, serviceListProperties, serviceEnumProperties)
+	s.init("service")
+	s.fill(properties, serviceRegularProperties, serviceListProperties, serviceEnumProperties)
 	return s
 }

@@ -23,6 +23,7 @@ var servicegroupEnumProperties = map[string]container{}
 func NewServicegroup(properties map[string]string) Object {
 	s := new(object)
 	// Initialize structure
-	s.init("servicegroup", properties, servicegroupRegularProperties, servicegroupListProperties, servicegroupEnumProperties)
+	s.init("servicegroup")
+	s.fill(properties, servicegroupRegularProperties, servicegroupListProperties, servicegroupEnumProperties)
 	return s
 }

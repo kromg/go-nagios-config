@@ -20,6 +20,7 @@ var contactgroupEnumProperties = map[string]container{}
 func NewContactgroup(properties map[string]string) Object {
 	c := new(object)
 	// Initialize structure
-	c.init("contactgroup", properties, contactgroupRegularProperties, contactgroupListProperties, contactgroupEnumProperties)
+	c.init("contactgroup")
+	c.fill(properties, contactgroupRegularProperties, contactgroupListProperties, contactgroupEnumProperties)
 	return c
 }

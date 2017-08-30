@@ -18,13 +18,14 @@ var hostdependencyListProperties = []string{
 }
 
 var hostdependencyEnumProperties = map[string]container{
-	"execution_failure_criteria":    enumProperty{"o": 1, "d": 1, "u": 1, "p": 1, "n": 1},
 	"notification_failure_criteria": enumProperty{"o": 1, "d": 1, "u": 1, "p": 1, "n": 1},
+	"execution_failure_criteria":    enumProperty{"o": 1, "d": 1, "u": 1, "p": 1, "n": 1},
 }
 
 func NewHostdependency(properties map[string]string) Object {
 	h := new(object)
 	// Initialize structure
-	h.init("hostdependency", properties, hostdependencyRegularProperties, hostdependencyListProperties, hostdependencyEnumProperties)
+	h.init("hostdependency")
+	h.fill(properties, hostdependencyRegularProperties, hostdependencyListProperties, hostdependencyEnumProperties)
 	return h
 }

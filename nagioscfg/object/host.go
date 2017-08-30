@@ -52,14 +52,15 @@ var hostListProperties = []string{
 
 var hostEnumProperties = map[string]container{
 	"flap_detection_options": enumProperty{"o": 1, "d": 1, "u": 1},
-	"stalking_options":       enumProperty{"o": 1, "d": 1, "u": 1},
 	"initial_state":          enumProperty{"o": 1, "d": 1, "u": 1},
 	"notification_options":   enumProperty{"d": 1, "u": 1, "r": 1, "f": 1, "s": 1},
+	"stalking_options":       enumProperty{"o": 1, "d": 1, "u": 1},
 }
 
 func NewHost(properties map[string]string) Object {
 	h := new(object)
 	// Initialize structure
-	h.init("host", properties, hostRegularProperties, hostListProperties, hostEnumProperties)
+	h.init("host")
+	h.fill(properties, hostRegularProperties, hostListProperties, hostEnumProperties)
 	return h
 }
