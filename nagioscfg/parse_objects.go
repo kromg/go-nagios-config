@@ -86,7 +86,7 @@ func (n *nagioscfg) parseObjectFile(fileLocation string) (err error) {
 		}
 
 		// Otherwise, this line must define some block property
-
+		// TODO: timeperiods need a special treatment in order to be able to parse EXCEPTIONS
 		key, value, isEmpty := splitLine(currentLine, space)
 		if !isEmpty {
 			blockProperties[key] = value

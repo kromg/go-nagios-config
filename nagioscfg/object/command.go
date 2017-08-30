@@ -2,21 +2,18 @@ package object
 
 import ()
 
-
 var commandRegularProperties = []string{
-    "command_line",
-    "command_name",
-    "name",
-    "register",
+	"command_line",
+	"command_name",
+	"name",
+	"register",
 }
 
 var commandListProperties = []string{
-    "use",
+	"use",
 }
 
-var commandEnumProperties = map[string]container{
-}
-
+var commandEnumProperties = map[string]container{}
 
 func NewCommand(properties map[string]string) Object {
 	c := new(object)
@@ -24,4 +21,3 @@ func NewCommand(properties map[string]string) Object {
 	c.init("command", properties, commandRegularProperties, commandListProperties, commandEnumProperties)
 	return c
 }
-

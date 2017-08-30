@@ -12,6 +12,7 @@ import (
 type NagiosCfg interface {
 	Parse()
 	Print()
+	SplitServicesToSingleHosts()
 }
 
 var resourceFileDirective = "resource_file"

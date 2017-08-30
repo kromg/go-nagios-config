@@ -2,26 +2,23 @@ package object
 
 import ()
 
-
 var hostgroupRegularProperties = []string{
-    "action_url",
-    "alias",
-    "hostgroup_name",
-    "name",
-    "notes",
-    "notes_url",
-    "register",
+	"action_url",
+	"alias",
+	"hostgroup_name",
+	"name",
+	"notes",
+	"notes_url",
+	"register",
 }
 
 var hostgroupListProperties = []string{
-    "hostgroup_members",
-    "members",
-    "use",
+	"hostgroup_members",
+	"members",
+	"use",
 }
 
-var hostgroupEnumProperties = map[string]container{
-}
-
+var hostgroupEnumProperties = map[string]container{}
 
 func NewHostgroup(properties map[string]string) Object {
 	h := new(object)
@@ -29,4 +26,3 @@ func NewHostgroup(properties map[string]string) Object {
 	h.init("hostgroup", properties, hostgroupRegularProperties, hostgroupListProperties, hostgroupEnumProperties)
 	return h
 }
-

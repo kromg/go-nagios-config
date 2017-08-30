@@ -31,6 +31,9 @@ var listSeparator = regexp.MustCompile("\\s*,\\s*")
 type Object interface {
 	init(string, map[string]string, []string, []string, map[string]container) (err error)
 	Dump()
+	GetProperty(string) (string, bool)
+	GetList(string) ([]string, bool)
+	GetEnum(string) ([]string, bool)
 }
 
 type enumProperty map[string]int
@@ -61,6 +64,8 @@ func (o *object) init(oType string,
 	for _, p := range propertiesDef {
 		if val, ok := properties[p]; ok {
 			o.properties[p] = val
+			// Remove the property from the map
+			delete(properties, p)
 		}
 	}
 
@@ -68,6 +73,8 @@ func (o *object) init(oType string,
 	for _, p := range listPropertiesDef {
 		if val, ok := properties[p]; ok {
 			o.listProperties[p] = listSeparator.Split(val, -1)
+			// Remove the property from the map
+			delete(properties, p)
 		}
 	}
 
@@ -83,6 +90,8 @@ func (o *object) init(oType string,
 					o.enumProperties[p] = append(o.enumProperties[p], v)
 				}
 			}
+			// Remove the property from the map
+			delete(properties, p)
 		}
 	}
 
@@ -94,4 +103,19 @@ func (o *object) init(oType string,
 func (e enumProperty) contains(k string) bool {
 	_, ok := e[k]
 	return ok
+}
+
+func (o *object) GetProperty(p string) (string, bool) {
+	v, ok := o.properties[p]
+	return v, ok
+}
+
+func (o *object) GetList(p string) ([]string, bool) {
+	v, ok := o.listProperties[p]
+	return v, ok
+}
+
+func (o *object) GetEnum(p string) ([]string, bool) {
+	v, ok := o.enumProperties[p]
+	return v, ok
 }
