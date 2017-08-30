@@ -5,7 +5,7 @@
 package nagioscfg
 
 import (
-	"nagioscfg/object"
+	"github.com/kromg/go-nagios-config/nagioscfg/object"
 )
 
 // Interface NagiosCfg contains all the methods to handle Nagios configuration.

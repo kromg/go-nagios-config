@@ -2,7 +2,7 @@ package nagioscfg
 
 import (
 	"bufio"
-	"nagioscfg/object"
+	"github.com/kromg/go-nagios-config/nagioscfg/object"
 	"os"
 	"path/filepath"
 	"regexp"
