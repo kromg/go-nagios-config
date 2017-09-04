@@ -18,7 +18,7 @@ var serviceextinfoListProperties = []string{
 	"use",
 }
 
-var serviceextinfoEnumProperties = map[string]container{}
+var serviceextinfoEnumProperties = map[string]Set{}
 
 func NewServiceextinfo(properties map[string]string) Object {
 	s := new(object)

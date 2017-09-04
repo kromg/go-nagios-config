@@ -3,15 +3,15 @@ package object
 import ()
 
 const (
-	HostgroupName             = "hostgroup_name"
-	HostgroupHostgroupMembers = "hostgroup_members"
-	HostgroupHostMembers      = "members"
+	HG_HOSTGROUP_NAME    = "hostgroup_name"
+	HG_HOSTGROUP_MEMBERS = "hostgroup_members"
+	HG_MEMBERS           = "members"
 )
 
 var hostgroupRegularProperties = []string{
 	"action_url",
 	"alias",
-	HostgroupName,
+	HG_HOSTGROUP_NAME,
 	"name",
 	"notes",
 	"notes_url",
@@ -19,12 +19,12 @@ var hostgroupRegularProperties = []string{
 }
 
 var hostgroupListProperties = []string{
-	HostgroupHostgroupMembers,
-	HostgroupHostMembers,
+	HG_HOSTGROUP_MEMBERS,
+	HG_MEMBERS,
 	"use",
 }
 
-var hostgroupEnumProperties = map[string]container{}
+var hostgroupEnumProperties = map[string]Set{}
 
 func NewHostgroup(properties map[string]string) Object {
 	h := new(object)

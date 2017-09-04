@@ -15,7 +15,7 @@ var contactgroupListProperties = []string{
 	"use",
 }
 
-var contactgroupEnumProperties = map[string]container{}
+var contactgroupEnumProperties = map[string]Set{}
 
 func NewContactgroup(properties map[string]string) Object {
 	c := new(object)

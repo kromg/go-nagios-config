@@ -21,9 +21,9 @@ var servicedependencyListProperties = []string{
 	"use",
 }
 
-var servicedependencyEnumProperties = map[string]container{
-	"execution_failure_criteria":    enumProperty{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
-	"notification_failure_criteria": enumProperty{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
+var servicedependencyEnumProperties = map[string]Set{
+	"execution_failure_criteria":    Set{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
+	"notification_failure_criteria": Set{"o": 1, "w": 1, "u": 1, "c": 1, "p": 1, "n": 1},
 }
 
 func NewServicedependency(properties map[string]string) Object {

@@ -11,20 +11,20 @@ import (
 )
 
 const (
-	Command           = "command"
-	Contact           = "contact"
-	Contactgroup      = "contactgroup"
-	Host              = "host"
-	Hostdependency    = "hostdependency"
-	Hostescalation    = "hostescalation"
-	Hostextinfo       = "hostextinfo"
-	Hostgroup         = "hostgroup"
-	Service           = "service"
-	Servicedependency = "servicedependency"
-	Serviceescalation = "serviceescalation"
-	Serviceextinfo    = "serviceextinfo"
-	Servicegroup      = "servicegroup"
-	Timeperiod        = "timeperiod"
+	COMMAND           = "command"
+	CONTACT           = "contact"
+	CONTACTGROUP      = "contactgroup"
+	HOST              = "host"
+	HOSTDEPENDENCY    = "hostdependency"
+	HOSTESCALATION    = "hostescalation"
+	HOSTEXTINFO       = "hostextinfo"
+	HOSTGROUP         = "hostgroup"
+	SERVICE           = "service"
+	SERVICEDEPENDENCY = "servicedependency"
+	SERVICEESCALATION = "serviceescalation"
+	SERVICEEXTINFO    = "serviceextinfo"
+	SERVICEGROUP      = "servicegroup"
+	TIMEPERIOD        = "timeperiod"
 )
 
 var Type = map[string]interface{}{
@@ -48,7 +48,7 @@ var listSeparator = regexp.MustCompile("\\s*,\\s*")
 
 type Object interface {
 	init(string)
-	fill(map[string]string, []string, []string, map[string]container) (err error)
+	fill(map[string]string, []string, []string, map[string]Set) (err error)
 	Dump()
 	GetProperty(string) (string, bool)
 	GetList(string) ([]string, bool)
@@ -61,10 +61,6 @@ type Object interface {
 }
 
 type enumProperty map[string]int
-
-type container interface {
-	contains(string) bool
-}
 
 type object struct {
 	oType          string
@@ -84,7 +80,7 @@ func (o *object) init(oType string) {
 func (o *object) fill(properties map[string]string,
 	propertiesDef []string,
 	listPropertiesDef []string,
-	enumPropertiesDef map[string]container) (err error) {
+	enumPropertiesDef map[string]Set) (err error) {
 
 	// Get regular properties from the map
 	for _, p := range propertiesDef {
@@ -112,7 +108,7 @@ func (o *object) fill(properties map[string]string,
 			// For each value read from the configuration, check if is a valid choice
 			for _, v := range listSeparator.Split(val, -1) {
 				// TODO: return an error if value from configuration is not allowed
-				if validChoices.contains(v) {
+				if validChoices.Contains(v) {
 					o.enumProperties[p] = append(o.enumProperties[p], v)
 				}
 			}

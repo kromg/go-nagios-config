@@ -28,7 +28,7 @@ var timeperiodListProperties = []string{
 	"wednesday",
 }
 
-var timeperiodEnumProperties = map[string]container{}
+var timeperiodEnumProperties = map[string]Set{}
 
 func NewTimeperiod(properties map[string]string) Object {
 	t := new(object)

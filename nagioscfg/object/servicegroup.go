@@ -18,7 +18,7 @@ var servicegroupListProperties = []string{
 	"use",
 }
 
-var servicegroupEnumProperties = map[string]container{}
+var servicegroupEnumProperties = map[string]Set{}
 
 func NewServicegroup(properties map[string]string) Object {
 	s := new(object)

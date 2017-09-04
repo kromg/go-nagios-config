@@ -13,7 +13,7 @@ var commandListProperties = []string{
 	"use",
 }
 
-var commandEnumProperties = map[string]container{}
+var commandEnumProperties = map[string]Set{}
 
 func NewCommand(properties map[string]string) Object {
 	c := new(object)

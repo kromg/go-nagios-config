@@ -9,18 +9,18 @@ import (
 // the configuration, leaving no service defined on multiple hosts at once
 func (n *nagioscfg) ExpandHostsInServiceDefinitions() {
 
-	for i, s := range n.objects[object.Service] {
-		if hosts, ok := s.GetList(object.HostName); ok {
+	for i, s := range n.objects[object.SERVICE] {
+		if hosts, ok := s.GetList(object.SVC_HOST_NAME); ok {
 			if len(hosts) > 1 {
 				// Remove the service from the list
-				n.removeObject(object.Service, i)
+				n.removeObject(object.SERVICE, i)
 				for _, host := range hosts {
 					// Make a copy of the original
 					sc := s.Copy()
 					// Overwrite original hosts definition with our own
-					sc.SetList(object.HostName, []string{host})
+					sc.SetList(object.SVC_HOST_NAME, []string{host})
 					// Append this definition to the services list
-					n.objects[object.Service] = append(n.objects[object.Service], sc)
+					n.objects[object.SERVICE] = append(n.objects[object.SERVICE], sc)
 				}
 			}
 		}
@@ -30,18 +30,16 @@ func (n *nagioscfg) ExpandHostsInServiceDefinitions() {
 // Loop on all services and, when a service is found which is defined on a hostgroup,
 // substitute that definition with N equivalent service definitions tied to one single host.
 func (n *nagioscfg) ExpandHostgroupsInServiceDefinitions() {
-	for i, s := range n.objects[object.Service] {
-		if hostgroups, ok := s.GetList(object.Hostgroup); ok {
+	for i, s := range n.objects[object.SERVICE] {
+		if hostgroups, ok := s.GetList(object.HOSTGROUP); ok {
 			if len(hostgroups) > 0 {
 				// Remove the service from the list
-				n.removeObject(object.Service, i)
+				n.removeObject(object.SERVICE, i)
 
 				// Expand all hostgroups to hosts (recursively)
-				hosts := make(map[string]int)
+				hosts := object.NewSet()
 				for _, hg := range hostgroups {
-					for host, _ := range n.expandHostgroup(hg) {
-						hosts[host] = 1 // Using a map in place of a set
-					}
+					hosts.AddAll(n.expandHostgroup(hg))
 				}
 
 				// Define one service per host
@@ -49,11 +47,11 @@ func (n *nagioscfg) ExpandHostgroupsInServiceDefinitions() {
 					// Make a copy of the original
 					sc := s.Copy()
 					// Overwrite original hosts definition with our own
-					sc.SetList(object.HostName, []string{host})
+					sc.SetList(object.SVC_HOST_NAME, []string{host.(string)})
 					// Clear original hostgroup names
-					sc.SetList(object.HostgroupName, []string{})
+					sc.SetList(object.SVC_HOSTGROUP_NAME, []string{})
 					// Append this definition to the services list
-					n.objects[object.Service] = append(n.objects[object.Service], sc)
+					n.objects[object.SERVICE] = append(n.objects[object.SERVICE], sc)
 				}
 			}
 		}

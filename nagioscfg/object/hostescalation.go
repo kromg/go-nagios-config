@@ -19,8 +19,8 @@ var hostescalationListProperties = []string{
 	"use",
 }
 
-var hostescalationEnumProperties = map[string]container{
-	"escalation_options": enumProperty{"d": 1, "u": 1, "r": 1},
+var hostescalationEnumProperties = map[string]Set{
+	"escalation_options": Set{"d": 1, "u": 1, "r": 1},
 }
 
 func NewHostescalation(properties map[string]string) Object {

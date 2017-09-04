@@ -21,7 +21,7 @@ var hostextinfoListProperties = []string{
 	"use",
 }
 
-var hostextinfoEnumProperties = map[string]container{}
+var hostextinfoEnumProperties = map[string]Set{}
 
 func NewHostextinfo(properties map[string]string) Object {
 	h := new(object)

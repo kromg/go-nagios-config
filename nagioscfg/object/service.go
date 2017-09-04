@@ -2,6 +2,11 @@ package object
 
 import ()
 
+const (
+	SVC_HOST_NAME      = "host_name"
+	SVC_HOSTGROUP_NAME = "hostgroup_name"
+)
+
 var serviceRegularProperties = []string{
 	"action_url",
 	"active_checks_enabled",
@@ -42,15 +47,15 @@ var serviceListProperties = []string{
 	"contacts",
 	"servicegroups",
 	"use",
-	"host_name",
-	"hostgroup_name",
+	SVC_HOST_NAME,
+	SVC_HOSTGROUP_NAME,
 }
 
-var serviceEnumProperties = map[string]container{
-	"stalking_options":       enumProperty{"o": 1, "w": 1, "u": 1, "c": 1},
-	"flap_detection_options": enumProperty{"o": 1, "w": 1, "c": 1, "u": 1},
-	"notification_options":   enumProperty{"w": 1, "u": 1, "c": 1, "r": 1, "f": 1, "s": 1},
-	"initial_state":          enumProperty{"o": 1, "w": 1, "u": 1, "c": 1},
+var serviceEnumProperties = map[string]Set{
+	"stalking_options":       Set{"o": 1, "w": 1, "u": 1, "c": 1},
+	"flap_detection_options": Set{"o": 1, "w": 1, "c": 1, "u": 1},
+	"notification_options":   Set{"w": 1, "u": 1, "c": 1, "r": 1, "f": 1, "s": 1},
+	"initial_state":          Set{"o": 1, "w": 1, "u": 1, "c": 1},
 }
 
 func NewService(properties map[string]string) Object {
