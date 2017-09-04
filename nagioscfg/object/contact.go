@@ -27,8 +27,8 @@ var contactListProperties = []string{
 }
 
 var contactEnumProperties = map[string]Set{
-	"service_notification_options": Set{"w": 1, "u": 1, "c": 1, "r": 1, "f": 1, "s": 1, "n": 1},
-	"host_notification_options":    Set{"d": 1, "u": 1, "r": 1, "f": 1, "s": 1, "n": 1},
+	"service_notification_options": NewSet("w", "u", "c", "r", "f", "s", "n"),
+	"host_notification_options":    NewSet("d", "u", "r", "f", "s", "n"),
 }
 
 func NewContact(properties map[string]string) Object {

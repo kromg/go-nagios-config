@@ -4,8 +4,11 @@ import ()
 
 type Set map[interface{}]byte
 
-func NewSet() Set {
+func NewSet(elements ...string) Set {
 	s := make(Set)
+	for _, e := range elements {
+		s.Add(e)
+	}
 	return s
 }
 

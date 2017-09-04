@@ -21,7 +21,7 @@ var serviceescalationListProperties = []string{
 }
 
 var serviceescalationEnumProperties = map[string]Set{
-	"escalation_options": Set{"w": 1, "u": 1, "c": 1, "r": 1},
+	"escalation_options": NewSet("w", "u", "c", "r"),
 }
 
 func NewServiceescalation(properties map[string]string) Object {

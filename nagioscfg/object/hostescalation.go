@@ -20,7 +20,7 @@ var hostescalationListProperties = []string{
 }
 
 var hostescalationEnumProperties = map[string]Set{
-	"escalation_options": Set{"d": 1, "u": 1, "r": 1},
+	"escalation_options": NewSet("d", "u", "r"),
 }
 
 func NewHostescalation(properties map[string]string) Object {

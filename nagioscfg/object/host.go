@@ -55,10 +55,10 @@ var hostListProperties = []string{
 }
 
 var hostEnumProperties = map[string]Set{
-	"flap_detection_options": Set{"o": 1, "d": 1, "u": 1},
-	"initial_state":          Set{"o": 1, "d": 1, "u": 1},
-	"notification_options":   Set{"d": 1, "u": 1, "r": 1, "f": 1, "s": 1},
-	"stalking_options":       Set{"o": 1, "d": 1, "u": 1},
+	"flap_detection_options": NewSet("o", "d", "u"),
+	"initial_state":          NewSet("o", "d", "u"),
+	"notification_options":   NewSet("d", "u", "r", "f", "s"),
+	"stalking_options":       NewSet("o", "d", "u"),
 }
 
 func NewHost(properties map[string]string) Object {

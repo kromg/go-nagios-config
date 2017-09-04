@@ -52,10 +52,10 @@ var serviceListProperties = []string{
 }
 
 var serviceEnumProperties = map[string]Set{
-	"stalking_options":       Set{"o": 1, "w": 1, "u": 1, "c": 1},
-	"flap_detection_options": Set{"o": 1, "w": 1, "c": 1, "u": 1},
-	"notification_options":   Set{"w": 1, "u": 1, "c": 1, "r": 1, "f": 1, "s": 1},
-	"initial_state":          Set{"o": 1, "w": 1, "u": 1, "c": 1},
+	"stalking_options":       NewSet("o", "w", "u", "c"),
+	"flap_detection_options": NewSet("o", "w", "c", "u"),
+	"notification_options":   NewSet("w", "u", "c", "r", "f", "s"),
+	"initial_state":          NewSet("o", "w", "u", "c"),
 }
 
 func NewService(properties map[string]string) Object {

@@ -18,8 +18,8 @@ var hostdependencyListProperties = []string{
 }
 
 var hostdependencyEnumProperties = map[string]Set{
-	"notification_failure_criteria": Set{"o": 1, "d": 1, "u": 1, "p": 1, "n": 1},
-	"execution_failure_criteria":    Set{"o": 1, "d": 1, "u": 1, "p": 1, "n": 1},
+	"notification_failure_criteria": NewSet("o", "d", "u", "p", "n"),
+	"execution_failure_criteria":    NewSet("o", "d", "u", "p", "n"),
 }
 
 func NewHostdependency(properties map[string]string) Object {
