@@ -2,6 +2,10 @@ package object
 
 import ()
 
+const (
+	HostName = "host_name"
+)
+
 var hostRegularProperties = []string{
 	"2d_coords",
 	"3d_coords",

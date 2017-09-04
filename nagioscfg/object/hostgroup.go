@@ -2,10 +2,16 @@ package object
 
 import ()
 
+const (
+	HostgroupName             = "hostgroup_name"
+	HostgroupHostgroupMembers = "hostgroup_members"
+	HostgroupHostMembers      = "members"
+)
+
 var hostgroupRegularProperties = []string{
 	"action_url",
 	"alias",
-	"hostgroup_name",
+	HostgroupName,
 	"name",
 	"notes",
 	"notes_url",
@@ -13,8 +19,8 @@ var hostgroupRegularProperties = []string{
 }
 
 var hostgroupListProperties = []string{
-	"hostgroup_members",
-	"members",
+	HostgroupHostgroupMembers,
+	HostgroupHostMembers,
 	"use",
 }
 

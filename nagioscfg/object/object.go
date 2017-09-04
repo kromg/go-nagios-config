@@ -6,7 +6,25 @@
 package object
 
 import (
+	"bufio"
 	"regexp"
+)
+
+const (
+	Command           = "command"
+	Contact           = "contact"
+	Contactgroup      = "contactgroup"
+	Host              = "host"
+	Hostdependency    = "hostdependency"
+	Hostescalation    = "hostescalation"
+	Hostextinfo       = "hostextinfo"
+	Hostgroup         = "hostgroup"
+	Service           = "service"
+	Servicedependency = "servicedependency"
+	Serviceescalation = "serviceescalation"
+	Serviceextinfo    = "serviceextinfo"
+	Servicegroup      = "servicegroup"
+	Timeperiod        = "timeperiod"
 )
 
 var Type = map[string]interface{}{
@@ -35,7 +53,11 @@ type Object interface {
 	GetProperty(string) (string, bool)
 	GetList(string) ([]string, bool)
 	GetEnum(string) ([]string, bool)
+	SetProperty(string, string)
+	SetList(string, []string)
+	SetEnum(string, []string)
 	Copy() Object
+	Write(*bufio.Writer) error
 }
 
 type enumProperty map[string]int
@@ -127,9 +149,47 @@ func (o *object) GetEnum(p string) ([]string, bool) {
 	return v, ok
 }
 
+// Retrieve a regular property by name
+func (o *object) SetProperty(p string, v string) {
+	o.properties[p] = v
+}
+
+// Retrieve a list property by name
+func (o *object) SetList(p string, s []string) {
+	o.listProperties[p] = s
+}
+
+// Retrieve an enum property by name
+func (o *object) SetEnum(p string, s []string) {
+	o.enumProperties[p] = s
+}
+
 // Get a copy of the object
 func (o *object) Copy() Object {
 	no := new(object)
 	no.init(o.oType)
+	// Copy the properties
+	for k, v := range o.properties {
+		no.properties[k] = v
+	}
+
+	// Copy the list properties
+	for k, s := range o.listProperties {
+		no.listProperties[k] = copySlice(s)
+	}
+
+	// Copy the enum properties
+	for k, e := range o.enumProperties {
+		no.enumProperties[k] = copySlice(e)
+	}
+
 	return no
+}
+
+func copySlice(s []string) []string {
+	ns := make([]string, len(s), len(s))
+	for i, v := range s {
+		ns[i] = v
+	}
+	return ns
 }

@@ -56,11 +56,15 @@ func (n *nagioscfg) parseResourceFile() (err error) {
 
 	f, err := os.Open(res)
 	defer f.Close()
+	if err != nil {
+		return err
+	}
+
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		// Split line, skip if empty
 		key, val, isEmpty := splitLine(scanner.Text(), equal)
-		if isEmpty {
+		if !isEmpty {
 			n.resourcecfg[key] = val
 		}
 	}

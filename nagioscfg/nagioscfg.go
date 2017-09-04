@@ -12,7 +12,8 @@ import (
 type NagiosCfg interface {
 	Parse()
 	Print()
-	SplitServicesToSingleHosts()
+	ExpandHostsInServiceDefinitios()
+	WriteTo(string, bool) error
 }
 
 var resourceFileDirective = "resource_file"
@@ -25,9 +26,11 @@ type nagioscfg struct {
 	nagiosCfgLocation string
 	// Main config file, when parsed
 	nagioscfg map[string]string
-	// Things in main config file that may be specified more than once
-	configFile   []string
-	configDir    []string
+	// Entries specified by cfg_file directives
+	configFile []string
+	// Entries specified by cfg_dir directives
+	configDir []string
+	// Entries specified by broker_module directives
 	brokerModule []string
 	// resource.cfg when parsed
 	resourcecfg map[string]string
